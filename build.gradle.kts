@@ -39,7 +39,6 @@ dependencies {
 	testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
-
 }
 
 tasks.register<Test>("unitTest") {
@@ -49,6 +48,19 @@ tasks.register<Test>("unitTest") {
 	filter {
 		excludeTestsMatching("*FunctionalTest")
 	}
+}
+
+tasks.register<Test>("functionalTest") {
+	description = "Runs functional tests."
+	group = "verification"
+
+	filter {
+		includeTestsMatching("*FunctionalTest")
+	}
+}
+
+tasks.withType<Test>().configureEach() {
+	useJUnitPlatform()
 }
 
 tasks.register<Test>("functionalTest") {
