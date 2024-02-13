@@ -45,11 +45,16 @@ public class ProductServiceImpl implements ProductService {
         }
         return product;
     }
-
-    @Override
+  
+  @Override
+    public Product editProduct(Product product) {
+        productRepository.editProduct(product);
+        return product;
+    }
+  
+  @Override
     public boolean deleteProductById(String productId) {
         Product id = getProductId(productId);
 
         return id != null && productRepository.deleteProduct(id);
-    }
 }
