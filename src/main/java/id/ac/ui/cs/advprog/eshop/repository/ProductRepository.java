@@ -18,4 +18,18 @@ public class ProductRepository {
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
+
+    public Product editProduct(Product product) {
+        for (int i=0; i < productData.size(); i++) {
+            Product item = productData.get(i);
+            if (item.getProductId().equals(product.getProductId())) {
+                return productData.set(i, product);
+            }
+        }
+        return null;
+    }
+
+    public boolean deleteProduct(Product product) {
+        return productData.remove(product);
+    }
 }
