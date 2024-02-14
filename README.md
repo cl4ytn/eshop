@@ -1,3 +1,4 @@
+Module 1<br>
 Reflection 1:
 Rewriting the code in the module helped me better understand the applications of what we learned. However, I ran into method bugs that I didn't know how to solve with the time I had left for this module. I will hopefully resolve the issues after the deadline, but for now this only contains the code given in the module.
 
@@ -7,3 +8,8 @@ Again, I faced some issues with my code so I wasn't able to write my own tests, 
 2. There's a risk of code duplication in the new suite because the setup procedures and instance variables from existing suites, violating the DRY principle. Additionally, while the test method names are descriptive, they could be more specific to clearly communicate the aspects of functionality being tested. Hardcoded values like the expected page title and welcome message could be made into constants to improve readability and maintainability. The handling of exceptions in the test methods could be made better to catch specific exceptions, providing clearer error messages.
 
    To improve code cleanliness and maintain code quality, we could place the code in a single file to be imported into others to avoid duplication. Ensure that test method names are descriptive and specific, clearly communicating the functionality being tested. Use constants for hardcoded values to improve readability and maintainability. Imporve error handling by catching specific exceptions to provide clearer error messages, and ensure that each test method is independent and does not rely on the state or behavior of other tests.
+
+Module 2 <br>
+Reflection 1: I'm going to spend more time over the weekend to clean up this module. I had a lot of difficulties understanding and implementing these new concepts. Because of this, I only have one code quality issue which was the inconsistency of the java versions in the build.gradle.kts file.
+
+Reflection 2: The current implementation has met the definition of continuous integration. The workflows are triggered on pushes to the main branch and pull request actions. This ensures that code changes are regularly integrated and tested. This allows us to find bugs earlier and makes maintenance easier. Even though not all the workflows directly handle deployment, they contribute to the CI/CD pipeline by automating tasks such as security analysis, code quality checks, and test execution. Therefore, streamlining the development lifecycle by enabling developers to deliver high-quality code more efficiently and reliably.
