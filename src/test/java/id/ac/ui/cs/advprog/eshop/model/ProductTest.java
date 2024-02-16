@@ -8,7 +8,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 class ProductTest {
     Product product;
     @Mock
@@ -23,6 +29,9 @@ class ProductTest {
         this.product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         this.product.setProductName("Sampo Cap Bambang");
         this.product.setProductQuantity(100);
+
+        List<Product> productList = Arrays.asList(product);
+        when(productRepository.findAll()).thenReturn(productList.iterator());
     }
 
     @Test
@@ -53,9 +62,37 @@ class ProductTest {
     }
 
     @Test
+    void testEditProductButItDNE(){
+        Product nonExistentProduct = new Product();
+        nonExistentProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        nonExistentProduct.setProductName("Sampo Cap Bambang");
+        nonExistentProduct.setProductQuantity(100);
+
+        when(productRepository.editProduct(nonExistentProduct)).thenReturn(null);
+
+        Product result = productService.editProduct(nonExistentProduct);
+        assertNull(result);
+    }
+
+    @Test
     void testDeleteProductById(){
         String id = this.product.getProductId();
         productService.deleteProductById(id);
         assertNull(productService.getProductId(id));
+    }
+
+    @Test
+    void testDeleteProductByIdButItDNE() {
+        // negative scenario: deleting a product that DNE
+        Product nonExistentProduct = new Product();
+        nonExistentProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        nonExistentProduct.setProductName("Sampo Cap Bambang");
+        nonExistentProduct.setProductQuantity(100);
+
+        when(productRepository.deleteProduct(nonExistentProduct)).thenReturn(false);
+
+        String id = nonExistentProduct.getProductId();
+        Boolean result = productService.deleteProductById(id);
+        assertFalse(result);
     }
 }
