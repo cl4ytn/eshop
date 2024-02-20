@@ -1,5 +1,7 @@
 plugins {
 	java
+	jacoco
+	id("org.sonarqube") version "4.4.1.3373"
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
 }
@@ -7,8 +9,16 @@ plugins {
 group = "id.ac.ui.cs.advprog"
 version = "0.0.1-SNAPSHOT"
 
+val seleniumJavaVersion = "4.14.1"
+val seleniumJupiterVersion = "5.0.1"
+val webdrivermanagerVersion = "5.6.3"
+val junitJupiterVersion = "5.9.1"
+
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
 }
 
 configurations {
@@ -20,11 +30,6 @@ configurations {
 repositories {
 	mavenCentral()
 }
-
-val seleniumJavaVersion = "4.14.1"
-val seleniumJupiterVersion = "5.0.1"
-val webdrivermanagerVersion = "5.6.3"
-val junitJupiterVersion = "5.9.1"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -39,7 +44,6 @@ dependencies {
 	testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
-
 }
 
 tasks.register<Test>("unitTest") {
@@ -60,6 +64,23 @@ tasks.register<Test>("functionalTest") {
 	}
 }
 
-tasks.withType<Test>().configureEach() {
+tasks.withType<Test>().configureEach {
 	useJUnitPlatform()
+}
+
+tasks.test {
+	filter {
+		excludeTestsMatching("*FunctionalTest")
+	}
+
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
+
+	reports {
+		html.required = true
+		xml.required = true
+	}
 }
