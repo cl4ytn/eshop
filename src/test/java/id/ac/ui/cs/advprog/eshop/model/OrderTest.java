@@ -30,7 +30,7 @@ class OrderTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order("asasdfkljasdf",
-                    this.products, 123987, "Safira Sudrajat");
+                    this.products, 1708560000L, "Safira Sudrajat");
         });
     }
 
@@ -61,14 +61,14 @@ class OrderTest {
     void testCreateOrderInvalidStatus() {
         assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order("asasdfkljasdf",
-                    this.products, 123987, "Safira Sudrajat", "MEOW");
+                    this.products, 123987L, "Safira Sudrajat", "MEOW");
         });
     }
 
     @Test
     void testSetStatusToCancelled() {
         Order order = new Order("sdflkajdsfh",
-                this.products, 123462345, "Safira Sudrajat");
+                this.products, 123462345L, "Safira Sudrajat");
         order.setStatus("CANCELLED");
         assertEquals("CANCELLED", order.getStatus());
     }
@@ -76,7 +76,7 @@ class OrderTest {
     @Test
     void testSetStatusToInvalidStatus() {
         Order order = new Order("adkfljhasf",
-                this.products, "1234135", "Safira Sudrajat");
+                this.products, 12341234L, "Safira Sudrajat");
         assertThrows(IllegalArgumentException.class, () -> order.setStatus("MEOW"));
     }
 }
