@@ -28,15 +28,15 @@ public class OrderRepositoryTest {
 
         orders = new ArrayList<>();
         Order order1 = new Order("alksajdfhasfd",
-                products, asdfL1, "Safira Sudrajat");
+                products, 12341234L, "Safira Sudrajat");
         orders.add(order1);
 
         Order order2 = new Order("alksajdgasdffhasfd",
-                products, asdfL1, "Safira Sudrajat");
+                products, 123412341234L, "Safira Sudrajat");
         orders.add(order2);
 
         Order order3 = new Order("asdfasdfasdf",
-                products, asdfL1, "Safira Sudrajat");
+                products, 1234123512L, "Safira Sudrajat");
         orders.add(order3);
     }
 
