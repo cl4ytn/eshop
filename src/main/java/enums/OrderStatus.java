@@ -1,7 +1,9 @@
 package enums;
 
 import id.ac.ui.cs.advprog.eshop.model.Order;
+import lombok.Getter;
 
+@Getter
 public enum OrderStatus {
     WAITING_PAYMENT("WAITING_PAYMENT"),
     FAILED("FAILED"),
