@@ -21,15 +21,6 @@ public class PaymentRepository {
     public List<Payment> findAll() {
         return paymentData;
     }
-    public Payment editPayment(Payment payment) {
-        for (int i=0; i < paymentData.size(); i++) {
-            Payment item = paymentData.get(i);
-            if (item.getId().equals(payment.getId())) {
-                return paymentData.set(i, payment);
-            }
-        }
-        return null;
-    }
     public Payment findById(String id) {
         for (Payment savedPayment : paymentData) {
             if (savedPayment.getId().equals(id)){
@@ -38,10 +29,4 @@ public class PaymentRepository {
         }
         return null;
     }
-    /*
-
-    public boolean deleteProduct(Product product) {
-        return productData.remove(product);
-    }
-     */
 }
