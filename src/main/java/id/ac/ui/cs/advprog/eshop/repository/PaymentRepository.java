@@ -24,7 +24,6 @@ public class PaymentRepository {
         return paymentData;
     }
     public Payment editPayment(Payment payment) {
-        System.out.println(paymentData.size());
         for (int i=0; i < paymentData.size(); i++) {
             Payment item = paymentData.get(i);
             if (item.getId().equals(payment.getId())) {

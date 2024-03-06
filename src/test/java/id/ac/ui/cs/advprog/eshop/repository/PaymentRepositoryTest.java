@@ -67,7 +67,7 @@ class PaymentRepositoryTest {
         paymentRepository.createPayment(payment);
         Payment newPayment = new Payment(payment.getId(), payment.getMethod(), payment.getStatus(),
                 payment.getPaymentData());
-        Payment result = paymentRepository.createPayment(newPayment);
+        Payment result = paymentRepository.editPayment(newPayment);
 
         Payment findResult = paymentRepository.findById(payments.get(1).getId());
         assertEquals(payment.getId(), result.getId());

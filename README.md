@@ -16,3 +16,12 @@ Reflection 2: The current implementation has met the definition of continuous in
 
 Module 3 <br>
 Reflection: I directly applied OCP and LSP. The advantage of OCP is less maintenance cost because we make our code so that it should only be extended and not modified. The advantage of LSP is that it makes our code more flexible since objects of a superclass should be interchangeable with objects of its subclasses. For example, the car class shouldn't extend the product class. The disadvatages of not apply SOLID principles is that it becomes less flexible, hard to maintain and scale, loss of test efficiency, and extra work. I have only applied two principles so far in my project, so I need to add more to avoid these issues.
+
+Module 4 <br>
+Reflection:
+1. Self-reflective questions
+- "Do I have enough functional tests to reassure myself that my application really works from the point of view of the user?": In this module, we focused on creating unit tests to implement a model, repository, and service. Therefore, I didn't implement any new functional tests, but I imagine we will work on that in the upcoming modules.
+- "Am I testing all the edge cases thoroughly?": I believe I checked at least most of the edge cases for the payment classes. I tested for different possible scenarios for each method (valid, invalid, and empty arguments).
+- "Do I have tests that check whether all my components fit together properly? Could some integrated tests do this, or are functional tests enough?": We didn't implement functional tests for this module, but I believe all types of tests are necessary to ensure our code functions as intended on a macro or micro scale.
+2. F.I.R.S.T. Principle
+- The unit tests are fast and do not take much time to run. Each test is isolated and does not affect other tests. The tests are repeatable because they are independent. Assert methods are used at the end of every test to self-validate happy or unhappy scenarios. According to SonarCloud, the current code coverage is 90%. I believe I thoroughly made my tests to ensure its functionality.
