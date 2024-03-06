@@ -47,6 +47,21 @@ class PaymentRepositoryTest {
     }
 
     @Test
+    void testSaveCreateWithoutId() {
+        Map<String, String> paymentData = new HashMap<>();
+        Payment payment = new Payment(null, "voucher", "WAITING_PAYMENT", paymentData);
+        Payment result = paymentRepository.createPayment(payment);
+        String id = result.getId();
+
+        Payment findResult = paymentRepository.findById(id);
+        assertEquals(payment.getId(), result.getId());
+        assertEquals(payment.getId(), findResult.getId());
+        assertEquals(payment.getMethod(), findResult.getMethod());
+        assertEquals(payment.getStatus(), findResult.getStatus());
+        assertEquals(payment.getPaymentData(), findResult.getPaymentData());
+    }
+
+    @Test
     void testSaveUpdate() {
         Payment payment = payments.get(1);
         paymentRepository.createPayment(payment);
@@ -83,5 +98,15 @@ class PaymentRepositoryTest {
 
         Payment findResult = paymentRepository.findById("zczc");
         assertNull(findResult);
+    }
+
+    @Test
+    void testFindAll() {
+        for(Payment payment: payments){
+            paymentRepository.createPayment(payment);
+        }
+
+        List<Payment> paymentList = paymentRepository.findAll();
+        assertEquals(3, paymentList.size());
     }
 }

@@ -20,8 +20,7 @@ public class PaymentServiceImpl implements PaymentService {
             Payment payment = new Payment(null, method, order.getStatus(), paymentData);
             String status = validatePaymentMethod(method, paymentData) ? "SUCCESS" : "REJECTED";
             payment.setStatus(status);
-            Payment res = paymentRepository.createPayment(payment);
-            return res;
+            return paymentRepository.createPayment(payment);
     }
     @Override
     public Payment setStatus(Payment payment, String status) {
